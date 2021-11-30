@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface DescriptionProps {
+export interface TextProps {
 	description: 'course' | 'review' | 'advantages';
 	children: ReactNode;
 }

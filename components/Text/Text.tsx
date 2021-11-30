@@ -1,9 +1,9 @@
 import cn from 'classnames';
 
-import { DescriptionProps } from './Description.props';
-import styles from './Description.module.css';
+import { TextProps } from './Text.props';
+import styles from './Text.module.css';
 
-export const Description = ({ description, children }: DescriptionProps): JSX.Element => {
+export const Text = ({ description, children }: TextProps): JSX.Element => {
 	return (
 		<p
 			className={cn(styles.description, {
