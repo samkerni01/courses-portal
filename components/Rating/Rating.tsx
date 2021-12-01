@@ -23,7 +23,7 @@ export const Rating = ({ rating, setRating }: RatingProps): JSX.Element => {
 			>
 				<svg width="20" height="20" viewBox="0 0 20 20" fill="#E2E2E2" xmlns="http://www.w3.org/2000/svg"
 					tabIndex={setRating && 0}
-					onKeyPress={(e: KeyboardEvent<SVGSVGElement>) => {
+					onKeyPress={(e: KeyboardEvent<SVGElement>) => {
 						if (e.key == 'Enter') {
 							setRating && setRating(i + 1);
 						}

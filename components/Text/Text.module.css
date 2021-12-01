@@ -1,7 +1,8 @@
 .description {
+	margin: 0;
+
 	font-weight: normal;
 	line-height: 24px;
-	margin: 0;
 }
 
 .course {
