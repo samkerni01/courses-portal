@@ -21,7 +21,7 @@
     "classnames": "^2.3.1",
     "cross-env": "^7.0.3",
     "eslint": "7.32.0",
-    "next-images": "^1.8.4",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "stylelint": "^14.1.0",
     "stylelint-config-standard": "^24.0.0",
     "stylelint-order": "^4.1.0",

@@ -5,13 +5,7 @@ import styles from './Text.module.css';
 
 export const Text = ({ description, children }: TextProps): JSX.Element => {
 	return (
-		<p
-			className={cn(styles.description, {
-				[styles.course]: description == 'course',
-				[styles.review]: description == 'review',
-				[styles.advantages]: description == 'advantages'
-			})}
-		>
+		<p className={cn(styles.description, styles[description])}>
 			{children}
 		</p >
 	);
