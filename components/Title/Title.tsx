@@ -1,4 +1,4 @@
-import { TitleProps } from './Title.props';
+import TitleProps from './Title.props';
 import styles from './Title.module.css';
 
 export const Title = ({ tag, children }: TitleProps): JSX.Element => {

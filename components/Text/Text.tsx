@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import { TextProps } from './Text.props';
+import TextProps from './Text.props';
 import styles from './Text.module.css';
 
 export const Text = ({ description, children }: TextProps): JSX.Element => {

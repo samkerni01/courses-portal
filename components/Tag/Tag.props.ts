@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface TagProps {
+export default interface TagProps {
 	size?: 's' | 'm';
 	color?: 'ghost' | 'red' | 'grey' | 'green' | 'primary';
 	href?: string;

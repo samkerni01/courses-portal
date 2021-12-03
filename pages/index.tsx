@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next';
-import { useState } from 'react';
 import axios from 'axios';
 
 import { Title, Button, Text, Tag, Rating } from '../components';
@@ -7,8 +6,6 @@ import { withLayout } from '../layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 
 function Home({ menu }: HomeProps): JSX.Element {
-    const [rating, setRating] = useState<number>(0);
-
     return (
         <>
             <Title tag='h1'>Текст</Title>
@@ -26,12 +23,8 @@ function Home({ menu }: HomeProps): JSX.Element {
             <Tag size='s' color='ghost'>Ghost</Tag>
             <Tag size='m' color='primary'>Primary</Tag>
 
-            <Rating rating={rating} setRating={setRating} />
-            <Rating rating={3} />
-
-            <ul>
-                {menu.map(m => (<li key={m._id.secondCategory}>{m._id.secondCategory}</li>))}
-            </ul>
+            <Rating mutable />
+            <Rating rating={4} />
         </>
     );
 }
