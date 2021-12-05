@@ -1,4 +1,4 @@
-const CoursesIcon = (): JSX.Element => {
+export const CoursesIcon = (): JSX.Element => {
 	return (
 		<svg width="24" height="24" viewBox="0 0 24 24" fill="#787D85" xmlns="http://www.w3.org/2000/svg">
 			<path d="M12 12.892L5.67188 10.351V12.1868C5.67188 14.1911 8.39236 15.7024 12 15.7024C15.6076 15.7024 18.3281 14.1911 18.3281 12.1868V10.351L12 12.892Z" />
@@ -6,5 +6,3 @@ const CoursesIcon = (): JSX.Element => {
 		</svg>
 	);
 };
-
-export default CoursesIcon;

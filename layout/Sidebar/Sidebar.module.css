@@ -1,0 +1,22 @@
+.logo {
+	margin-top: 34px;
+
+	color: var(--primary);
+
+	font-size: 24px;
+	font-weight: 200;
+}
+
+.logo span {
+	width: 159px;
+	margin: 0 4px 0 8px;
+
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.sidebar {
+	display: grid;
+	align-content: start;
+	gap: 20px;
+}

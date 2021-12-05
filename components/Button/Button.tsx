@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import ArrowIcon from './arrow.svg';
+import { ArrowIcon } from './arrow.svg';
 import styles from './Button.module.css';
 import ButtonProps from './Button.props';
 

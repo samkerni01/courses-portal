@@ -4,6 +4,8 @@
 
 .star svg {
 	margin-right: 5px;
+
+	outline: none;
 }
 
 .pointer {

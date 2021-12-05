@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import RatingProps from './Rating.props';
 import styles from './Rating.module.css';
-import StarIcon from './star.svg';
+import { StarIcon } from './star.svg';
 
 export const Rating = ({ rating = 0, mutable }: RatingProps): JSX.Element => {
 	const [ratingState, setRatingState] = useState<number>(rating);

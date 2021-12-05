@@ -1,12 +1,13 @@
 .firstLevel {
 	display: grid;
+	align-items: center;
+
+	margin-top: 20px;
+
+	font-size: 18px;
+	font-weight: 500;
 	grid-template-columns: 24px 1fr;
 	gap: 20px;
-	align-items: center;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 25px;
-	margin-top: 20px;
 }
 
 .firstLevelActive,
@@ -27,9 +28,9 @@
 
 	color: var(--gray-dark);
 
-	font-weight: 300;
 	font-size: 12px;
-	line-height: 16px;
+
+	font-weight: 300;
 }
 
 .secondBlock {
@@ -40,16 +41,25 @@
 }
 
 .thridLevel {
-	margin-bottom: 10px;
 	display: block;
+
+	margin-bottom: 10px;
 
 	cursor: pointer;
 
 	color: var(--gray-dark);
 
-	font-weight: 500;
 	font-size: 14px;
-	line-height: 19px;
+
+	font-weight: 500;
+}
+
+.secondLevelBlock {
+	display: none;
+}
+
+.secondLevelBlockOpened {
+	display: block;
 }
 
 .secondLevelBlockOpened:last-child {
@@ -58,5 +68,5 @@
 
 .thridLevelActive,
 .thridLevel:hover {
-	color: var(--primary)
+	color: var(--primary);
 }
