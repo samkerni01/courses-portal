@@ -18,10 +18,10 @@ function Home(): JSX.Element {
             <Text description='review'>Отзывы</Text>
             <Text description='advantages'>Преимущества</Text>
 
-            <Tag size='s' color='red'>Red</Tag>
-            <Tag size='m' color='green'>Green</Tag>
-            <Tag size='s' color='ghost'>Ghost</Tag>
-            <Tag size='m' color='primary'>Primary</Tag>
+            <Tag color='red'>Red</Tag>
+            <Tag color='green'>Green</Tag>
+            <Tag color='ghost'>Ghost</Tag>
+            <Tag color='primary'>Primary</Tag>
 
             <Rating mutable />
             <Rating rating={4} />

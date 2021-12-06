@@ -3,3 +3,7 @@ export * from './Button/Button';
 export * from './Text/Text';
 export * from './Tag/Tag';
 export * from './Rating/Rating';
+export * from './Card/Card';
+export * from './VacanciesInfo/VacanciesInfo';
+export * from './Advantages/Advantages';
+export * from './Skills/Skills';

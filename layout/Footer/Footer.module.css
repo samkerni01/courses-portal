@@ -12,6 +12,7 @@
 	font-weight: 500;
 	grid-template-columns: 1fr repeat(2, auto);
 	gap: 10px 40px;
+	margin-top: 49px;
 }
 
 .footer a:hover {

@@ -16,7 +16,7 @@
 }
 
 .sidebar {
-	display: grid;
+	/* display: grid; */
 	align-content: start;
 	gap: 20px;
 }
