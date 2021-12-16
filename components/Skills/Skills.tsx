@@ -1,17 +1,16 @@
 import { Title, Tag } from '../';
 
 import styles from './Skills.module.css';
+import SkillsProps from './Skills.props';
 
-export const Skills = (): JSX.Element => {
+export const Skills = ({ tags }: SkillsProps): JSX.Element => {
 	return (
 		<div>
-			<Title className={styles.title} tag='h1'>Получаемые навыки</Title>
+			<Title className={styles.title} tag='h2'>Получаемые навыки</Title>
 			<div className={styles.tags}>
-				<Tag color='primary'>Работа в Photoshop</Tag>
-				<Tag color='primary'>Подготовка макетов</Tag>
-				<Tag color='primary'>Графический дизайн</Tag>
-				<Tag color='primary'>Web дизайн</Tag>
-				<Tag color='primary'>Дизайн сайтов</Tag>
+				{tags.map(tag => (
+					<Tag color='primary' className={styles.tag}>{tag}</Tag>
+				))}
 			</div>
 		</div>
 	);

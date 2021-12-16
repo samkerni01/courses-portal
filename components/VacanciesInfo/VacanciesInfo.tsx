@@ -1,11 +1,12 @@
 import cn from 'classnames';
 
 import styles from './VacanciesInfo.module.css';
-import { HhData } from '../../interfaces/toppage.iterface';
 import { Card } from '../Card/Card';
 import { StarIcon } from './star.svg';
+import { Tag, Title } from '..';
+import VacanciesInfoProps from './VacansiesInfo.props';
 
-export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary }: HhData): JSX.Element => {
+export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary, category }: VacanciesInfoProps): JSX.Element => {
 	const icons: JSX.Element[] = new Array(3).fill(<></>);
 
 	const convertNum = (num: number): string => {
@@ -28,7 +29,7 @@ export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary 
 				<div className={styles.title}>{level}</div>
 				<div className={styles.salaryValue}>{convertNum(salary)}</div>
 				<div className={styles.stars}>
-					{icons.map((icon: JSX.Element, n: number) => {
+					{icons.map((icon, n) => {
 						return <StarIcon key={n} className={cn({
 							[styles.filled]: rating >= n + 1
 						})} />;
@@ -39,14 +40,22 @@ export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary 
 	});
 
 	return (
-		<div className={styles.hh}>
-			<Card className={styles.count}>
-				<div className={styles.title}>Всего вакансий</div>
-				<div className={styles.countValue}>{count}</div>
-			</Card>
-			<Card className={styles.salary}>
-				{elements}
-			</Card>
-		</div>
+		<>
+			<div className={styles.h2}>
+				<Title tag='h2'>Вакансии - {category}</Title>
+				<Tag color='red'>hh.ru</Tag>
+			</div>
+
+			<div className={styles.hh}>
+				<Card className={styles.count}>
+					<div className={styles.title}>Всего вакансий</div>
+					<div className={styles.countValue}>{count}</div>
+				</Card>
+				<Card className={styles.salary}>
+					{elements}
+				</Card>
+			</div>
+		</>
+
 	);
 };

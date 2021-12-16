@@ -5,27 +5,22 @@ import { TopLevelCategory } from '../../interfaces/toppage.iterface';
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
 	return (
-		<div className={styles.wrapper}>
+		<div>
 			<div className={styles.title}>
 				<Title tag='h1'>{page.title}</Title>
 				{products && <Tag color='grey'>{products.length}</Tag>}
-				<span>Сортировка</span>
+				<span>Сорт</span>
 			</div>
 
 			<div>
 				{products && products.map(product => (<div key={product._id}>{product.title}</div>))}
 			</div>
 
-			<div className={styles.hhTitle}>
-				<Title tag='h2'>Вакансии - {page.category}</Title>
-				<Tag color='red'>hh.ru</Tag>
-			</div>
+			{firstCategory == TopLevelCategory.Courses && page.hh && <VacanciesInfo {...page.hh} category={page.category} />}
 
-			{firstCategory == TopLevelCategory.Courses && <VacanciesInfo {...page.hh} />}
+			{page.advantages && page.advantages.length > 0 && <Advantages advantages={page.advantages} seoText={page.seoText} />}
 
-			<Advantages />
-
-			<Skills />
+			<Skills tags={page.tags} />
 		</div >
 	);
 };

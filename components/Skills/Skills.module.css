@@ -1,20 +1,21 @@
-.tags {
-	display: grid;
-	grid-template-columns: repeat(5, auto);
-	column-gap: 10px;
-	justify-content: left;
-	justify-items: center;
-	margin-top: 20px;
-}
-
 .title {
 	margin-top: 30px;
 }
 
-@media (max-width: 950px) {
-	.tags {
-		grid-template-columns: repeat(auto-fill, 150px);
-		gap: 10px;
-		justify-items: left;
+.tags {
+	margin-top: 20px;
+}
+
+.tag {
+	margin-left: 10px;
+}
+
+.tag:first-child {
+	margin-left: 0;
+}
+
+@media (max-width: 920px) {
+	.tag {
+		margin-top: 10px;
 	}
 }
