@@ -4,7 +4,7 @@ import styles from './Advantages.module.css';
 import AdvantagesProps from './Advantages.props';
 import { CheckIcon } from './check.svg';
 
-export const Advantages = ({ advantages, seoText }: AdvantagesProps): JSX.Element => {
+export const Advantages = ({ advantages }: AdvantagesProps): JSX.Element => {
 	return (
 		<div className={styles.advantages}>
 			<Title className={styles.h2} tag='h2'>Преимущества</Title>
@@ -19,8 +19,6 @@ export const Advantages = ({ advantages, seoText }: AdvantagesProps): JSX.Elemen
 					</Text>
 				</div>
 			))}
-
-			{seoText && <Text className={styles.seoText} description='advantages'>{seoText}</Text>}
 		</div>
 	);
 };

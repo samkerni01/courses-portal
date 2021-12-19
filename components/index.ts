@@ -7,3 +7,7 @@ export * from './Card/Card';
 export * from './VacanciesInfo/VacanciesInfo';
 export * from './Advantages/Advantages';
 export * from './Skills/Skills';
+export * from './Sort/Sort';
+export * from './Input/Input';
+export * from './Textarea/Textarea';
+export * from './Search/Search';

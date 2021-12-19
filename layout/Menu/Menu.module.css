@@ -70,3 +70,8 @@
 .thridLevel:hover {
 	color: var(--primary);
 }
+
+.list {
+	margin: 0;
+	padding: 0;
+}

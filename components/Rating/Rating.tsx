@@ -16,7 +16,8 @@ export const Rating = ({ rating = 0, mutable }: RatingProps): JSX.Element => {
 				key={i}
 				className={cn(styles.star, {
 					[styles.filled]: i < ratingState,
-					[styles.pointer]: mutable
+					[styles.pointer]: mutable,
+					[styles.outline]: !mutable
 				})}
 				onMouseEnter={() => mutable && setRatingState(i + 1)}
 				onMouseLeave={() => mutable && setRatingState(lastRating)}

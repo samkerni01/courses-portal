@@ -5,6 +5,10 @@
 .star svg {
 	margin-right: 5px;
 
+	outline-color: var(--primary);
+}
+
+.outline svg {
 	outline: none;
 }
 

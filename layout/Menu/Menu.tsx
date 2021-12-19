@@ -84,7 +84,7 @@ export const Menu = (): JSX.Element => {
 
 	return (
 		<div className={styles.menu}>
-			<ul>
+			<ul className={styles.list}>
 				{buildFirstLevel()}
 			</ul>
 		</div>

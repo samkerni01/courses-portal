@@ -8,8 +8,8 @@ export const Skills = ({ tags }: SkillsProps): JSX.Element => {
 		<div>
 			<Title className={styles.title} tag='h2'>Получаемые навыки</Title>
 			<div className={styles.tags}>
-				{tags.map(tag => (
-					<Tag color='primary' className={styles.tag}>{tag}</Tag>
+				{tags.map((tag, i) => (
+					<Tag key={i} color='primary' className={styles.tag}>{tag}</Tag>
 				))}
 			</div>
 		</div>

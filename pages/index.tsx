@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import axios from 'axios';
 
-import { Title, Button, Text, Tag, Rating } from '../components';
+import { Title, Button, Text, Tag, Rating, Input, Textarea } from '../components';
 import { withLayout } from '../layout/Layout';
 import { MenuItem } from '../interfaces/menu.interface';
 
@@ -25,6 +25,9 @@ function Home(): JSX.Element {
 
             <Rating mutable />
             <Rating rating={4} />
+
+            <Input placeholder='test' />
+            <Textarea placeholder='text' />
         </>
     );
 }
