@@ -1,17 +1,15 @@
 import cn from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './VacanciesInfo.module.css';
 import { Card } from '../Card/Card';
 import { StarIcon } from './star.svg';
 import { Tag, Title } from '..';
 import VacanciesInfoProps from './VacansiesInfo.props';
+import { convertNum } from '../../helpers/helpers';
 
 export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary, category }: VacanciesInfoProps): JSX.Element => {
 	const icons: JSX.Element[] = new Array(3).fill(<></>);
-
-	const convertNum = (num: number): string => {
-		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/, ' ') + ' ₽';
-	};
 
 	interface VacancyInfo {
 		level: string;
@@ -30,7 +28,7 @@ export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary,
 				<div className={styles.salaryValue}>{convertNum(salary)}</div>
 				<div className={styles.stars}>
 					{icons.map((icon, n) => {
-						return <StarIcon key={n} className={cn({
+						return <StarIcon key={uuidv4()} className={cn({
 							[styles.filled]: rating >= n + 1
 						})} />;
 					})}

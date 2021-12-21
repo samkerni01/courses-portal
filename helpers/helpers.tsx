@@ -12,3 +12,12 @@ export const firstLevelMenu: firstLevelMenuItem[] = [
 	{ route: 'books', name: 'Книги', icon: <BooksIcon />, id: TopLevelCategory.Books },
 	{ route: 'products', name: 'Продукты', icon: <ProductsIcon />, id: TopLevelCategory.Products }
 ];
+
+export const convertNum = (num: number): string => {
+	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/, ' ') + ' ₽';
+};
+
+export const declOfNum = (num: number, titles: string[]): string => {
+	const cases = [2, 0, 1, 1, 1, 2];
+	return titles[(num % 100 > 4 && num % 100 < 20) ? 2 : cases[(num % 10 < 5) ? num % 10 : 5]];
+};
