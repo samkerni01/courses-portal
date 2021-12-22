@@ -88,7 +88,7 @@
 }
 
 .featureTag {
-	margin-top: 19px;
+	margin: 9px 5px 0 0;
 }
 
 .featureDots {
@@ -128,22 +128,18 @@
 	}
 }
 
-@media screen and (max-width: 850px) {
-	.rates {
-		gap: 25px;
-	}
-}
-
 @media screen and (max-width: 480px) {
 	.rates {
 		grid-template-columns: 1fr;
+		gap: 15px;
 	}
 
 	.ratesItem {
 		display: grid;
 		align-items: center;
 		justify-content: left;
-		grid-template-columns: 100px auto;
+		grid-template-columns: auto auto;
+		gap: 20px;
 	}
 
 	.subtitle {
@@ -155,4 +151,18 @@
 	.button {
 		margin-bottom: 15px;
 	}
+}
+
+.closed {
+	overflow: hidden;
+
+	max-height: 0;
+	padding: 0;
+}
+
+.opened {
+	overflow: hidden;
+
+	max-height: auto;
+	padding: 30px;
 }

@@ -10,7 +10,7 @@
 .red {
 	padding: 3px 10px;
 
-	background: #DE0000;
+	background: var(--red);
 
 	font-size: 14px;
 	line-height: 19px;

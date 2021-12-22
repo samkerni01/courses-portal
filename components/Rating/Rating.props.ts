@@ -1,4 +1,8 @@
+import { FieldError } from 'react-hook-form';
+
 export default interface RatingProps {
 	rating?: number;
-	mutable?: boolean;
+	isEditable?: boolean;
+	setRatingOfForm?: (rating: number) => void;
+	error?: FieldError;
 }

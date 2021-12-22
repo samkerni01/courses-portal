@@ -1,9 +1,20 @@
-import { TextareaHTMLAttributes } from 'react';
+import { ForwardedRef, forwardRef } from 'react';
+import cn from 'classnames';
 
 import styles from './Textarea.module.css';
+import TextAreaProps from './Textarea.props';
 
-export const Textarea = ({ ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>): JSX.Element => {
+export const Textarea = forwardRef(({ className, error, ...props }: TextAreaProps, ref: ForwardedRef<HTMLTextAreaElement>): JSX.Element => {
 	return (
-		<textarea {...props} className={styles.textarea} />
+		<div className={cn(className, styles.wrapper)}>
+			<textarea
+				{...props}
+				className={cn(styles.textarea, {
+					[styles.error]: error
+				})}
+				ref={ref}
+			/>
+			{error && <span className={styles.errorMessage}>{error.message}</span>}
+		</div>
 	);
-};
+});
