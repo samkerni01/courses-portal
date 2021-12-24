@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { useState } from 'react';
 
 import TopPageComponentProps from './TopPageComponent.props';
 import styles from './TopPageComponent.module.css';
@@ -6,14 +6,19 @@ import styles from './TopPageComponent.module.css';
 import { Tag, Title, VacanciesInfo, Advantages, Skills, Sort, Product } from '../../components';
 import { TopLevelCategory } from '../../interfaces/toppage.iterface';
 import { SortEnum } from '../../components/Sort/Sort.props';
-import { SortReducer } from './sort.reducer';
 
 export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
-	const [{ sort, products: sortedProducts }, dispathSort] = useReducer(SortReducer, { products, sort: SortEnum.Rating });
+	const [sort, setSort] = useState<SortEnum>(SortEnum.Rating);
 
-	const setSort = (sort: SortEnum) => {
-		dispathSort({ type: sort });
+	const sortProducts = () => {
+		if (sort == SortEnum.Rating) {
+			return products.sort((a, b) => a.initialRating > b.initialRating ? -1 : 1);
+		}
+
+		return products.sort((a, b) => a.price > b.price ? 1 : -1);
 	};
+
+	const sortedProducts = sortProducts();
 
 	return (
 		<div>

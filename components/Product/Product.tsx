@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { MouseEvent, useRef, useState } from 'react';
 import cn from 'classnames';
 
 import ProductProps from './Product.props';
@@ -9,6 +9,16 @@ import { convertNum, declOfNum } from '../../helpers/helpers';
 
 export const Product = ({ product }: ProductProps): JSX.Element => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+	const reviewRef = useRef<HTMLDivElement>(null);
+
+	const scrollToReview = (e: MouseEvent<HTMLAnchorElement>) => {
+		e.preventDefault();
+		setIsReviewOpened(true);
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start'
+		});
+	};
 
 	return (
 		<>
@@ -31,7 +41,7 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 					<div className={styles.ratesItem}>
 						<div className={styles.price}>
 							{convertNum(product.price)}
-							{product.oldPrice && <Tag className={styles.priceTag} color='green'>{convertNum(product.price - product.oldPrice)}</Tag>}
+							{product.oldPrice > 0 && <Tag className={styles.priceTag} color='green'>{convertNum(product.price - product.oldPrice)}</Tag>}
 						</div>
 						<div className={styles.subtitle}>цена</div>
 					</div>
@@ -43,7 +53,7 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 
 					<div className={styles.ratesItem}>
 						<Rating rating={product.reviewAvg ?? product.initialRating} />
-						<div className={styles.subtitle}>{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}</div>
+						<div className={styles.subtitle}> <a href='#ref' onClick={scrollToReview}>{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}</a></div>
 					</div>
 				</div>
 
@@ -93,10 +103,14 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 				</div>
 			</Card>
 
-			<Card color='blue' className={cn(styles.reviews, {
-				[styles.opened]: isReviewOpened,
-				[styles.closed]: !isReviewOpened
-			})}>
+			<Card
+				color='blue'
+				className={cn(styles.reviews, {
+					[styles.opened]: isReviewOpened,
+					[styles.closed]: !isReviewOpened
+				})}
+				ref={reviewRef}
+			>
 				{product.reviews.map(review => (
 					<div key={review._id}>
 						<Review review={review} />
