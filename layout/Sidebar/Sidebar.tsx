@@ -3,8 +3,9 @@ import cn from 'classnames';
 
 import { Menu } from '../Menu/Menu';
 import { Logo } from '../logo.svg';
-import styles from './Sidebar.module.css';
 import { Search } from '../../components';
+
+import styles from './Sidebar.module.css';
 
 export const Sidebar = ({ className }: HTMLAttributes<HTMLDivElement>): JSX.Element => {
 	return (
@@ -15,7 +16,6 @@ export const Sidebar = ({ className }: HTMLAttributes<HTMLDivElement>): JSX.Elem
 				top
 			</div>
 			<Search />
-
 			<Menu />
 		</div>
 	);

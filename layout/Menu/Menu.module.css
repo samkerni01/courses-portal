@@ -43,8 +43,6 @@
 .thridLevel {
 	display: block;
 
-	margin-bottom: 10px;
-
 	cursor: pointer;
 
 	color: var(--gray-dark);
@@ -55,15 +53,7 @@
 }
 
 .secondLevelBlock {
-	display: none;
-}
-
-.secondLevelBlockOpened {
-	display: block;
-}
-
-.secondLevelBlockOpened:last-child {
-	margin-bottom: 20px;
+	overflow: hidden;
 }
 
 .thridLevelActive,

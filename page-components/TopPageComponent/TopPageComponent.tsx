@@ -21,16 +21,16 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
 	const sortedProducts = sortProducts();
 
 	return (
-		<div>
+		<>
 			<div className={styles.title}>
 				<Title tag='h1'>{page.title}</Title>
 				{products && <Tag color='grey'>{products.length}</Tag>}
 				<Sort sort={sort} setSort={setSort} />
 			</div>
 
-			<div>
-				{sortedProducts && sortedProducts.map(product => (<Product key={product._id} product={product} />))}
-			</div>
+			<>
+				{sortedProducts && sortedProducts.map(product => (<Product layout key={product._id} product={product} />))}
+			</>
 
 			{firstCategory == TopLevelCategory.Courses && page.hh && <VacanciesInfo {...page.hh} category={page.category} />}
 
@@ -41,12 +41,12 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
 				&&
 				(page.advantages[0].title && page.advantages[0].description)
 				&&
-				<Advantages advantages={page.advantages} seoText={page.seoText} />
+				<Advantages advantages={page.advantages} />
 			}
 
 			{page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{ __html: page.seoText }} />}
 
 			<Skills tags={page.tags} />
-		</div >
+		</ >
 	);
 };

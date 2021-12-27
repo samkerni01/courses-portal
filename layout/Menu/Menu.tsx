@@ -1,7 +1,8 @@
-import { useContext } from 'react';
+import { useContext, Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import cn from 'classnames';
+import { motion } from 'framer-motion';
 
 import { AppContext } from '../../context/app.context';
 import { firstLevelMenu } from '../../helpers/helpers';
@@ -13,10 +14,38 @@ export const Menu = (): JSX.Element => {
 	const { menu, setMenu, firstCategory } = useContext(AppContext);
 	const router = useRouter();
 
+	const variants = {
+		visible: {
+			marginBottom: 20,
+			transition: {
+				when: 'beforeChildren',
+				staggerChildren: 0.1
+			}
+		},
+		hidden: {
+			marginBottom: 0
+		}
+	};
+
+	const variantsChildren = {
+		visible: {
+			opacity: 1,
+			height: 'auto',
+			marginBottom: 10
+		},
+		hidden: {
+			opacity: 0,
+			height: 0,
+			marginBottom: 0
+		}
+	};
+
 	const openSecondLevel = (secondCategory: string) => {
 		setMenu && setMenu(menu.map(category => {
 			if (category._id.secondCategory == secondCategory) {
 				category.isOpnened = !category.isOpnened;
+			} else {
+				category.isOpnened = false;
 			}
 
 			return category;
@@ -54,14 +83,18 @@ export const Menu = (): JSX.Element => {
 					}
 
 					return (
-						<div key={category._id.secondCategory}>
+						<Fragment key={category._id.secondCategory}>
 							<div className={styles.secondLevel} onClick={() => openSecondLevel(category._id.secondCategory)}>{category._id.secondCategory}</div>
-							<div className={cn(styles.secondLevelBlock, {
-								[styles.secondLevelBlockOpened]: category.isOpnened
-							})}>
+							<motion.div
+								layout
+								variants={variants}
+								initial={category.isOpnened ? 'visible' : 'hidden'}
+								animate={category.isOpnened ? 'visible' : 'hidden'}
+								className={styles.secondLevelBlock}
+							>
 								{buildThridLevel(category.pages, menuItem.route)}
-							</div>
-						</div>
+							</motion.div>
+						</Fragment>
 					);
 				})}
 			</div>
@@ -71,22 +104,34 @@ export const Menu = (): JSX.Element => {
 	const buildThridLevel = (pages: PageItem[], route: string) => {
 		return (
 			pages.map(page => (
-				<Link href={`/${route}/${page.alias}`} key={page._id}>
-					<a className={cn(styles.thridLevel, {
-						[styles.thridLevelActive]: `/${route}/${page.alias}` == router.asPath
-					})}>
-						{page.category}
-					</a>
-				</Link>
+				<motion.div
+					key={page._id}
+					variants={variantsChildren}
+				>
+					<Link href={`/${route}/${page.alias}`}>
+						<a
+							className={cn(styles.thridLevel, {
+								[styles.thridLevelActive]: `/${route}/${page.alias}` == router.asPath
+							})}
+							onClick={() => {
+								menu.map(category => {
+									if (category._id.secondCategory != page.alias) {
+										category.isOpnened = false;
+									}
+								});
+							}}
+						>
+							{page.category}
+						</a>
+					</Link>
+				</motion.div>
 			))
 		);
 	};
 
 	return (
-		<div className={styles.menu}>
-			<ul className={styles.list}>
-				{buildFirstLevel()}
-			</ul>
-		</div>
+		<ul className={styles.list}>
+			{buildFirstLevel()}
+		</ul>
 	);
 };

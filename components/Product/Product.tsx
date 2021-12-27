@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import { MouseEvent, useRef, useState } from 'react';
-import cn from 'classnames';
+import { ForwardedRef, forwardRef, MouseEvent, useRef, useState, Fragment } from 'react';
+import { motion } from 'framer-motion';
 
 import ProductProps from './Product.props';
 import styles from './Product.module.css';
 import { Card, Title, Tag, Rating, Text, Button, Review, ReviewForm } from '..';
 import { convertNum, declOfNum } from '../../helpers/helpers';
 
-export const Product = ({ product }: ProductProps): JSX.Element => {
+export const Product = motion(forwardRef(({ product }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
 	const reviewRef = useRef<HTMLDivElement>(null);
 
@@ -20,9 +20,21 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 		});
 	};
 
+	const variants = {
+		visible: {
+			height: 'auto',
+			opacity: 1,
+		},
+		hidden: {
+			height: 0,
+			overflow: 'hidden',
+			opacity: 0
+		}
+	};
+
 	return (
-		<>
-			<Card className={styles.product}>
+		<div ref={ref}>
+			<Card className={styles.product} >
 				<div className={styles.title}>
 					<Image
 						src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
@@ -103,22 +115,25 @@ export const Product = ({ product }: ProductProps): JSX.Element => {
 				</div>
 			</Card>
 
-			<Card
-				color='blue'
-				className={cn(styles.reviews, {
-					[styles.opened]: isReviewOpened,
-					[styles.closed]: !isReviewOpened
-				})}
-				ref={reviewRef}
+			<motion.div
+				variants={variants}
+				initial={isReviewOpened ? 'visible' : 'hidden'}
+				animate={isReviewOpened ? 'visible' : 'hidden'}
 			>
-				{product.reviews.map(review => (
-					<div key={review._id}>
-						<Review review={review} />
-						<hr className={styles.hr} />
-					</div>
-				))}
-				<ReviewForm productId={product._id} />
-			</Card>
-		</>
+				<Card
+					color='blue'
+					ref={reviewRef}
+					className={styles.reviews}
+				>
+					{product.reviews.map(review => (
+						<Fragment key={review._id}>
+							<Review review={review} />
+							<hr className={styles.hr} />
+						</Fragment>
+					))}
+					<ReviewForm productId={product._id} />
+				</Card>
+			</motion.div>
+		</div>
 	);
-};
+}));

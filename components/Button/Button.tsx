@@ -8,10 +8,7 @@ export const Button = ({ appearance, arrow, children, className, ...props }: But
 	return (
 		<button
 			{...props}
-			className={cn(className, styles.button, {
-				[styles.primary]: appearance == 'primary',
-				[styles.ghost]: appearance == 'ghost'
-			})}
+			className={cn(className, styles.button, styles[appearance])}
 		>
 			{children}
 			{arrow &&
