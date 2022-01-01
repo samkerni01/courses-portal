@@ -2,6 +2,7 @@ import cn from 'classnames';
 
 import { SortProps, SortEnum } from './Sort.props';
 import styles from './Sort.module.css';
+import { LinesIcon } from './lines.svg';
 
 export const Sort = ({ sort, setSort }: SortProps): JSX.Element => {
 	return (
@@ -12,11 +13,7 @@ export const Sort = ({ sort, setSort }: SortProps): JSX.Element => {
 					[styles.active]: sort == SortEnum.Rating
 				})}
 			>
-				<div className={styles.icon}>
-					<span />
-					<span />
-					<span />
-				</div>По рейтингу
+				<LinesIcon className={styles.icon} />По рейтингу
 			</span>
 			<span
 				onClick={() => setSort(SortEnum.Price)}
@@ -24,11 +21,7 @@ export const Sort = ({ sort, setSort }: SortProps): JSX.Element => {
 					[styles.active]: sort == SortEnum.Price
 				})}
 			>
-				<div className={styles.icon}>
-					<span />
-					<span />
-					<span />
-				</div>По цене
+				<LinesIcon className={styles.icon} />По цене
 			</span>
 		</div>
 	);

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
 import styles from './Up.module.css';
-import { UpIcon } from './up.svg';
+
+import { ButtonMini } from '../ButtonMini/ButtonMini';
 
 export const Up = (): JSX.Element => {
 	const controls = useAnimation();
@@ -33,13 +34,12 @@ export const Up = (): JSX.Element => {
 	};
 
 	return (
-		<motion.button
+		<motion.div
 			className={styles.up}
-			onClick={scrollToTop}
 			animate={controls}
 			initial={{ opacity: 0 }}
 		>
-			<UpIcon />
-		</ motion.button>
+			<ButtonMini appearance='primary' icon='up' onClick={scrollToTop} />
+		</ motion.div>
 	);
 };
