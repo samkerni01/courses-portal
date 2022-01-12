@@ -1,4 +1,4 @@
-import { useContext, Fragment } from 'react';
+import { useContext, Fragment, KeyboardEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 import cn from 'classnames';
@@ -84,7 +84,18 @@ export const Menu = (): JSX.Element => {
 
 					return (
 						<Fragment key={category._id.secondCategory}>
-							<div className={styles.secondLevel} onClick={() => openSecondLevel(category._id.secondCategory)}>{category._id.secondCategory}</div>
+							<div
+								tabIndex={0}
+								className={styles.secondLevel}
+								onClick={() => openSecondLevel(category._id.secondCategory)}
+								onKeyPress={(e: KeyboardEvent<HTMLDivElement>) => {
+									if (e.key == 'Enter') {
+										openSecondLevel(category._id.secondCategory);
+									}
+								}}
+							>
+								{category._id.secondCategory}
+							</div>
 							<motion.div
 								layout
 								variants={variants}
@@ -92,7 +103,7 @@ export const Menu = (): JSX.Element => {
 								animate={category.isOpnened ? 'visible' : 'hidden'}
 								className={styles.secondLevelBlock}
 							>
-								{buildThridLevel(category.pages, menuItem.route)}
+								{buildThridLevel(category.pages, menuItem.route, category.isOpnened ?? false)}
 							</motion.div>
 						</Fragment>
 					);
@@ -101,7 +112,7 @@ export const Menu = (): JSX.Element => {
 		);
 	};
 
-	const buildThridLevel = (pages: PageItem[], route: string) => {
+	const buildThridLevel = (pages: PageItem[], route: string, isOpened: boolean) => {
 		return (
 			pages.map(page => (
 				<motion.div
@@ -120,6 +131,7 @@ export const Menu = (): JSX.Element => {
 									}
 								});
 							}}
+							tabIndex={isOpened ? 0 : -1}
 						>
 							{page.category}
 						</a>
