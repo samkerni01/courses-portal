@@ -1,0 +1,14 @@
+.logo {
+	color: var(--primary);
+
+	font-size: 24px;
+	font-weight: 200;
+}
+
+.logo span {
+	width: 159px;
+	margin: 0 4px 0 8px;
+
+	font-size: 30px;
+	font-weight: bold;
+}
