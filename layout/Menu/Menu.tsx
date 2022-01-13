@@ -74,6 +74,13 @@ export const Menu = (): JSX.Element => {
 		);
 	};
 
+	const openSecondLevelKey = (key: KeyboardEvent, secondCategory: string) => {
+		if (key.code == 'Enter' || key.code == 'Space') {
+			key.preventDefault();
+			openSecondLevel(secondCategory);
+		}
+	};
+
 	const buildSecondLevel = (menuItem: firstLevelMenuItem) => {
 		return (
 			<div className={styles.secondBlock}>
@@ -88,11 +95,7 @@ export const Menu = (): JSX.Element => {
 								tabIndex={0}
 								className={styles.secondLevel}
 								onClick={() => openSecondLevel(category._id.secondCategory)}
-								onKeyPress={(e: KeyboardEvent<HTMLDivElement>) => {
-									if (e.key == 'Enter') {
-										openSecondLevel(category._id.secondCategory);
-									}
-								}}
+								onKeyDown={(key: KeyboardEvent) => openSecondLevelKey(key, category._id.secondCategory)}
 							>
 								{category._id.secondCategory}
 							</div>

@@ -42,6 +42,8 @@
 
 	color: var(--white);
 	background: var(--primary);
+
+	z-index: 100;
 }
 
 .displayed {

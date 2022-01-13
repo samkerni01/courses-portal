@@ -13,7 +13,9 @@ export const Product = motion(forwardRef(({ product }: ProductProps, ref: Forwar
 
 	const scrollToReview = (e: MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault();
+
 		setIsReviewOpened(true);
+		reviewRef.current?.focus();
 		reviewRef.current?.scrollIntoView({
 			behavior: 'smooth',
 			block: 'start'
@@ -124,6 +126,7 @@ export const Product = motion(forwardRef(({ product }: ProductProps, ref: Forwar
 					color='blue'
 					ref={reviewRef}
 					className={styles.reviews}
+					tabIndex={isReviewOpened ? 0 : -1}
 				>
 					{product.reviews.map(review => (
 						<Fragment key={review._id}>
@@ -131,7 +134,7 @@ export const Product = motion(forwardRef(({ product }: ProductProps, ref: Forwar
 							<hr className={styles.hr} />
 						</Fragment>
 					))}
-					<ReviewForm productId={product._id} />
+					<ReviewForm productId={product._id} isOpened={isReviewOpened} />
 				</Card>
 			</motion.div>
 		</div>

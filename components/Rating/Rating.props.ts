@@ -5,4 +5,5 @@ export default interface RatingProps {
 	isEditable?: boolean;
 	setRatingOfForm?: (rating: number) => void;
 	error?: FieldError;
+	tabIndex?: number;
 }
