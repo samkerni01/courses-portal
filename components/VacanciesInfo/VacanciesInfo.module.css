@@ -45,14 +45,14 @@
 	font-weight: 300;
 }
 
-.countValue {
+.count-value {
 	color: var(--primary);
 
 	font-size: 36px;
 	font-weight: bold;
 }
 
-.salaryValue {
+.salary-value {
 	margin-bottom: 10px;
 
 	font-size: 26px;

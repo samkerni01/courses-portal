@@ -2,13 +2,12 @@ import { useForm, Controller } from 'react-hook-form';
 import { useState } from 'react';
 import axios from 'axios';
 
-import ReviewFormProps from './ReviewForm.props';
-import styles from './ReviewForm.module.css';
-import { IReviewForm, IReviewSentResponse } from './ReviewForm.interface';
-import { CloseIcon } from './close.svg';
-
 import { Button, Input, Rating, Textarea } from '..';
 import { API } from '../../helpers/api';
+
+import styles from './ReviewForm.module.css';
+import { ReviewFormProps, IReviewForm, IReviewSentResponse } from './ReviewForm.props';
+import { CloseIcon } from './close.svg';
 
 export const ReviewForm = ({ productId, isOpened }: ReviewFormProps): JSX.Element => {
 	const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
@@ -21,7 +20,11 @@ export const ReviewForm = ({ productId, isOpened }: ReviewFormProps): JSX.Elemen
 
 			if (data.message) {
 				setIsSuccess(true);
-				reset();
+				reset({
+					name: '',
+					title: '',
+					description: ''
+				});
 			} else {
 				setError('Что-то пошло не так');
 			}
@@ -82,7 +85,7 @@ export const ReviewForm = ({ productId, isOpened }: ReviewFormProps): JSX.Elemen
 
 			{isSuccess &&
 				<div className={styles.success}>
-					<div className={styles.successTitle}>Ваш отзыв отправлен</div>
+					<div className={styles['success-title']}>Ваш отзыв отправлен</div>
 					<div>
 						Спасибо, ваш отзыв булет опубликован после проверки.
 					</div>

@@ -1,14 +1,20 @@
 .logo {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 8px;
+}
+
+.text {
 	color: var(--primary);
 
-	font-size: 24px;
+	font-size: 17px;
 	font-weight: 200;
 }
 
-.logo span {
+.text span {
 	width: 159px;
-	margin: 0 4px 0 8px;
+	margin-right: 4px;
 
-	font-size: 30px;
+	font-size: 23px;
 	font-weight: bold;
 }

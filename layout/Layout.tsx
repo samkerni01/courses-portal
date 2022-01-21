@@ -1,15 +1,12 @@
 import { FunctionComponent, useRef, useState, KeyboardEvent } from 'react';
 import cn from 'classnames';
 
+import { Header, Sidebar, Footer } from './layout-items';
 import { AppContextProvider, IAppContext } from '../context/app.context';
-import { LayoutProps } from './Layout.props';
-
-import styles from './Layout.module.css';
-
-import { Header } from './Header/Header';
-import { Sidebar } from './Sidebar/Sidebar';
-import { Footer } from './Footer/Footer';
 import { Up } from '../components';
+
+import { LayoutProps } from './Layout.props';
+import styles from './Layout.module.css';
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
 	const [skipLinkDisplayed, setSkipLinkDisplayed] = useState<boolean>(false);
@@ -19,7 +16,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 		<div className={styles.wrapper}>
 			<a
 				tabIndex={1}
-				className={cn(styles.skipLink, {
+				className={cn(styles['skip-link'], {
 					[styles.displayed]: skipLinkDisplayed
 				})}
 				onFocus={() => setSkipLinkDisplayed(true)}

@@ -1,5 +1,5 @@
-import cn from 'classnames';
 import { ForwardedRef, forwardRef } from 'react';
+import cn from 'classnames';
 
 import CardProps from './Card.props';
 import styles from './Card.module.css';

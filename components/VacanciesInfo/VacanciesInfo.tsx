@@ -1,11 +1,11 @@
 import cn from 'classnames';
 
-import styles from './VacanciesInfo.module.css';
-import { Card } from '../Card/Card';
-import { StarIcon } from './star.svg';
-import { Tag, Title } from '..';
-import { VacanciesInfoProps, VacancyInfo } from './VacansiesInfo.props';
+import { Tag, Title, Card } from '..';
 import { convertNum } from '../../helpers/helpers';
+
+import styles from './VacanciesInfo.module.css';
+import { StarIcon } from './star.svg';
+import { VacanciesInfoProps, VacancyInfo } from './VacansiesInfo.props';
 
 export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary, category }: VacanciesInfoProps): JSX.Element => {
 	const icons: JSX.Element[] = new Array(3).fill(<></>);
@@ -17,7 +17,7 @@ export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary,
 	].map(({ level, salary, rating }: VacancyInfo, i: number) => (
 		<div key={i}>
 			<div className={styles.title}>{level}</div>
-			<div className={styles.salaryValue}>{convertNum(salary)}</div>
+			<div className={styles['salary-value']}>{convertNum(salary)}</div>
 			<div className={styles.stars}>
 				{icons.map((icon, n) => (
 					<StarIcon key={n} className={cn({
@@ -38,7 +38,7 @@ export const VacanciesInfo = ({ count, juniorSalary, middleSalary, seniorSalary,
 			<div className={styles.hh}>
 				<Card className={styles.count}>
 					<div className={styles.title}>Всего вакансий</div>
-					<div className={styles.countValue}>{count}</div>
+					<div className={styles['count-value']}>{count}</div>
 				</Card>
 				<Card className={styles.salary}>
 					{elements}

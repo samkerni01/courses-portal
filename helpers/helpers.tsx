@@ -1,4 +1,4 @@
-import { TopLevelCategory } from '../interfaces/toppage.iterface';
+import { TopLevelCategory } from '../interfaces/content.iterface';
 import { firstLevelMenuItem } from '../interfaces/menu.interface';
 
 import { CoursesIcon } from './icons/courses.svg';
@@ -15,9 +15,4 @@ export const firstLevelMenu: firstLevelMenuItem[] = [
 
 export const convertNum = (num: number): string => {
 	return num.toString().replace(/\B(?=(\d{3})+(?!\d))/, ' ') + ' ₽';
-};
-
-export const declOfNum = (num: number, titles: string[]): string => {
-	const cases = [2, 0, 1, 1, 1, 2];
-	return titles[(num % 100 > 4 && num % 100 < 20) ? 2 : cases[(num % 10 < 5) ? num % 10 : 5]];
 };

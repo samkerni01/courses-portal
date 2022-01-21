@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import TopPageComponentProps from './TopPageComponent.props';
-import styles from './TopPageComponent.module.css';
+import { Tag, Title, VacanciesInfo, Advantages, Skills, Sort, Product } from '../../../components';
+import { SortEnum } from '../../../components/Sort/Sort.props';
+import { TopLevelCategory } from '../../../interfaces/content.iterface';
 
-import { Tag, Title, VacanciesInfo, Advantages, Skills, Sort, Product } from '../../components';
-import { TopLevelCategory } from '../../interfaces/toppage.iterface';
-import { SortEnum } from '../../components/Sort/Sort.props';
+import ContentProps from './Content.props';
+import styles from './Content.module.css';
 
-export const TopPageComponent = ({ page, products, firstCategory }: TopPageComponentProps): JSX.Element => {
+export const Content = ({ page, products, firstCategory }: ContentProps): JSX.Element => {
 	const [sort, setSort] = useState<SortEnum>(SortEnum.Rating);
 
 	const sortProducts = () => {
@@ -28,9 +28,7 @@ export const TopPageComponent = ({ page, products, firstCategory }: TopPageCompo
 				<Sort sort={sort} setSort={setSort} />
 			</div>
 
-			<>
-				{sortedProducts && sortedProducts.map(product => (<Product layout key={product._id} product={product} />))}
-			</>
+			{sortedProducts && sortedProducts.map(product => (<Product layout key={product._id} product={product} />))}
 
 			{firstCategory == TopLevelCategory.Courses && page.hh && <VacanciesInfo {...page.hh} category={page.category} />}
 

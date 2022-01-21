@@ -1,5 +1,5 @@
-import { TopPageAdvantage } from '../../interfaces/toppage.iterface';
+import { ContentAdvantage } from '../../interfaces/content.iterface';
 
 export default interface AdvantagesProps {
-	advantages: TopPageAdvantage[]
+	advantages: ContentAdvantage[]
 }

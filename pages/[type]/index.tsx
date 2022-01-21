@@ -7,15 +7,10 @@ import { MenuItem } from '../../interfaces/menu.interface';
 import { firstLevelMenu } from '../../helpers/helpers';
 import { API } from '../../helpers/api';
 
-function Type({ firstCategory }: TypeProps): JSX.Element {
-	return (
-		<>
-			Type: {firstCategory}
-		</>
-	);
+interface TypeProps extends Record<string, unknown> {
+	menu: MenuItem[];
+	firstCategory: number;
 }
-
-export default withLayout(Type);
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	return {
@@ -42,7 +37,12 @@ export const getStaticProps: GetStaticProps<TypeProps> = async ({ params }: GetS
 	};
 };
 
-interface TypeProps extends Record<string, unknown> {
-	menu: MenuItem[];
-	firstCategory: number;
+function Type({ menu, firstCategory }: TypeProps): JSX.Element {
+	return (
+		<>
+			Type: {firstCategory}
+		</>
+	);
 }
+
+export default withLayout(Type);

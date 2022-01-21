@@ -28,7 +28,7 @@
 	position: relative;
 }
 
-.errorMessage {
+.error-message {
 	position: absolute;
 	bottom: -20px;
 	left: 0;

@@ -1,4 +1,4 @@
-import { TopLevelCategory } from './toppage.iterface';
+import { TopLevelCategory } from './content.iterface';
 
 export interface PageItem {
 	alias: string;

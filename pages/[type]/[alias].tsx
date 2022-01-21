@@ -1,24 +1,43 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import Head from 'next/head';
 import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
 
 import { withLayout } from '../../layout/Layout';
+import { Content } from '../../layout/layout-items';
+
 import { MenuItem } from '../../interfaces/menu.interface';
-import { TopLevelCategory, TopPageModel } from '../../interfaces/toppage.iterface';
+import { TopLevelCategory, ContentModel } from '../../interfaces/content.iterface';
 import { ProductModel } from '../../interfaces/product.interface';
+
 import { firstLevelMenu } from '../../helpers/helpers';
-import { TopPageComponent } from '../../page-components';
 import { API } from '../../helpers/api';
 
-function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
-	return <TopPageComponent
-		firstCategory={firstCategory}
-		page={page}
-		products={products}
-	/>;
+import { Error404 } from '../404';
+
+function Page({ page, products, firstCategory }: ContentProps): JSX.Element {
+	if (!page || !products) return <Error404 />;
+
+	return (
+		<>
+			<Head>
+				<title>{page.metaTitle}</title>
+				<meta name="description" content={page.metaDescription} />
+				<meta property="og:title" content={page.metaTitle} />
+				<meta property="og:description" content={page.metaDescription} />
+				<meta property="og:type" content="article" />
+
+			</Head>
+			<Content
+				firstCategory={firstCategory}
+				page={page}
+				products={products}
+			/>
+		</>
+	);
 }
 
-export default withLayout(TopPage);
+export default withLayout(Page);
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	let paths: string[] = [];
@@ -34,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<ContentProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
 	if (!params) return { notFound: true };
 
 	try {
@@ -44,7 +63,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
 		const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, { firstCategory: firstCategoryItem.id });
 		if (menu.length == 0) return { notFound: true };
 
-		const { data: page } = await axios.get<TopPageModel>(API.topPage.byAlias + params.alias);
+		const { data: page } = await axios.get<ContentModel>(API.topPage.byAlias + params.alias);
 		const { data: products } = await axios.post<ProductModel[]>(API.product.find, {
 			category: page.category,
 			limit: 10
@@ -61,9 +80,9 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({ params }: G
 	} catch { return { notFound: true }; }
 };
 
-interface TopPageProps extends Record<string, unknown> {
+interface ContentProps extends Record<string, unknown> {
 	menu: MenuItem[];
 	firstCategory: TopLevelCategory;
-	page: TopPageModel;
+	page: ContentModel;
 	products: ProductModel[];
 }

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/dist/client/router';
 import { KeyboardEvent, useState } from 'react';
-import { Button, Input } from '../';
+
+import { Button, Input } from '..';
 
 import styles from './Search.module.css';
 import { SearchIcon } from './search.svg';

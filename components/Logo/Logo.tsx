@@ -5,8 +5,12 @@ export const Logo = () => {
 	return (
 		<div className={styles.logo}>
 			<LogoIcon />
-			<span>OWL</span>
-			top
+
+			<div className={styles.text}>
+				<span>COURSES</span>
+				<br />
+				information portal
+			</div>
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import { Title, Tag } from '../';
+import { Title, Tag } from '..';
 
 import styles from './Skills.module.css';
 import SkillsProps from './Skills.props';

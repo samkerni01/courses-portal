@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion';
 import { HTMLAttributes, useEffect, useState } from 'react';
-import { Logo, ButtonMini } from '../../components';
-import { Sidebar } from '../Sidebar/Sidebar';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+
+import { Logo, ButtonMini } from '../../../components';
+import { Sidebar } from '../Sidebar/Sidebar';
 
 import styles from './Header.module.css';
 

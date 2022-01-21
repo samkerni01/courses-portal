@@ -3,4 +3,4 @@ module.exports = {
     domains: ['courses-top.ru']
   },
   reactStrictMode: true
-}
+};

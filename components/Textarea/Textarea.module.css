@@ -3,6 +3,8 @@
 	min-height: 76px;
 	padding: 7px 15px;
 
+	resize: none;
+
 	color: var(--black);
 	border: none;
 	border-radius: 5px;
@@ -29,7 +31,7 @@
 	position: relative;
 }
 
-.errorMessage {
+.error-message {
 	position: absolute;
 	bottom: -15px;
 	left: 0;

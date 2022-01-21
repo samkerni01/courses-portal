@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'react';
+
 import { UpIcon as up, CloseIcon as close, MenuIcon as menu } from './icons';
 
 export const icons = {

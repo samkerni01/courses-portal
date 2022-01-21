@@ -1,11 +1,12 @@
-import Image from 'next/image';
 import { ForwardedRef, forwardRef, MouseEvent, useRef, useState, Fragment } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
+
+import { convertNum } from '../../helpers/helpers';
+import { Card, Title, Tag, Rating, Text, Button, Review, ReviewForm } from '..';
 
 import ProductProps from './Product.props';
 import styles from './Product.module.css';
-import { Card, Title, Tag, Rating, Text, Button, Review, ReviewForm } from '..';
-import { convertNum, declOfNum } from '../../helpers/helpers';
 
 export const Product = motion(forwardRef(({ product }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
@@ -34,9 +35,14 @@ export const Product = motion(forwardRef(({ product }: ProductProps, ref: Forwar
 		}
 	};
 
+	const declOfNum = (num: number, titles: string[]): string => {
+		const cases = [2, 0, 1, 1, 1, 2];
+		return titles[(num % 100 > 4 && num % 100 < 20) ? 2 : cases[(num % 10 < 5) ? num % 10 : 5]];
+	};
+
 	return (
 		<div ref={ref}>
-			<Card className={styles.product} >
+			<Card className={styles.wrapper} >
 				<div className={styles.title}>
 					<Image
 						src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
@@ -47,27 +53,31 @@ export const Product = motion(forwardRef(({ product }: ProductProps, ref: Forwar
 					/>
 					<div>
 						<Title tag='h3'>{product.title}</Title>
-						{product.categories.map((item, i) => <Tag key={i} className={styles.titleTag}>{item}</Tag>)}
+						{product.categories.map((item, i) => <Tag key={i} className={styles['title-tag']}>{item}</Tag>)}
 					</div>
 				</div>
 
 				<div className={styles.rates}>
-					<div className={styles.ratesItem}>
+					<div className={styles.rate}>
 						<div className={styles.price}>
 							{convertNum(product.price)}
-							{product.oldPrice > 0 && <Tag className={styles.priceTag} color='green'>{convertNum(product.price - product.oldPrice)}</Tag>}
+							{product.oldPrice > 0 && <Tag className={styles['price-tag']} color='green'>{convertNum(product.price - product.oldPrice)}</Tag>}
 						</div>
 						<div className={styles.subtitle}>цена</div>
 					</div>
 
-					<div className={styles.ratesItem}>
+					<div className={styles.rate}>
 						<div className={styles.credit}>{convertNum(product.credit)}<span>/мес</span></div>
 						<div className={styles.subtitle}>кредит</div>
 					</div>
 
-					<div className={styles.ratesItem}>
+					<div className={styles.rate}>
 						<Rating rating={product.reviewAvg ?? product.initialRating} />
-						<div className={styles.subtitle}> <a href='#ref' onClick={scrollToReview}>{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}</a></div>
+						<div className={styles.subtitle}>
+							<a href='#ref' onClick={scrollToReview}>
+								{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+							</a>
+						</div>
 					</div>
 				</div>
 
@@ -79,27 +89,27 @@ export const Product = motion(forwardRef(({ product }: ProductProps, ref: Forwar
 				<div>
 					{product.characteristics.map((item, i) => (
 						<div key={i} className={styles.feature}>
-							<span className={styles.featureTitle}>{item.name}</span>
-							<span className={styles.featureDots} />
-							<span className={styles.featureValue}>{item.value}</span>
+							<span className={styles['feature-title']}>{item.name}</span>
+							<span className={styles['feature-dots']} />
+							<span className={styles['feature-value']}>{item.value}</span>
 						</div>
 					))}
 					{product.tags.map((tag, i) => (
-						<Tag key={i} className={styles.featureTag}>{tag}</Tag>
+						<Tag key={i} className={styles['feature-tag']}>{tag}</Tag>
 					))}
 				</div>
 
 				<div>
 					{product.advantages &&
 						<div className={styles.advantages}>
-							<div className={styles.advTitle}>Преимущества</div>
-							<p className={styles.advDescr}>{product.advantages}</p>
+							<div className={styles['adv-title']}>Преимущества</div>
+							<p className={styles['adv-descr']}>{product.advantages}</p>
 						</div>
 					}
 					{product.disadvantages &&
 						<div className={styles.disadvantages}>
-							<div className={styles.advTitle}>Недостатки</div>
-							<p className={styles.advDescr}>{product.disadvantages}</p>
+							<div className={styles['adv-title']}>Недостатки</div>
+							<p className={styles['adv-descr']}>{product.disadvantages}</p>
 						</div>
 					}
 				</div>

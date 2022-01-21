@@ -1,8 +1,8 @@
 import { HTMLAttributes } from 'react';
 import cn from 'classnames';
 
+import { Logo, Search } from '../../../components';
 import { Menu } from '../Menu/Menu';
-import { Logo, Search } from '../../components';
 
 import styles from './Sidebar.module.css';
 

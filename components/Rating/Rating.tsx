@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent, forwardRef, ForwardedRef, useRef } from 'react';
+import { useState, KeyboardEvent, forwardRef, ForwardedRef, useRef, useEffect } from 'react';
 import cn from 'classnames';
 
 import RatingProps from './Rating.props';
@@ -10,6 +10,11 @@ export const Rating = forwardRef(({ rating = 0, isEditable, setRatingOfForm, err
 	const [ratingValue, setRatingValue] = useState<number>(rating);
 	const starsArray: JSX.Element[] = new Array(5).fill(<></>);
 	const ratingArrayRef = useRef<(SVGElement | null)[]>([]);
+
+	useEffect(() => {
+		setAciveRating(rating);
+		setRatingValue(rating);
+	}, [rating]);
 
 	const setValueKey = (key: KeyboardEvent) => {
 		let rating: number = aciveRating;
@@ -39,23 +44,34 @@ export const Rating = forwardRef(({ rating = 0, isEditable, setRatingOfForm, err
 	};
 
 	const elements: JSX.Element[] = starsArray.map((item: JSX.Element, i: number) => {
+		if (!isEditable) {
+			return (
+				<span
+					key={i}
+					className={cn(styles.star, styles.outline, {
+						[styles.filled]: i < aciveRating
+					})}
+				>
+					<StarIcon />
+				</span>
+			);
+		}
+
 		return (
 			<span
 				key={i}
-				className={cn(styles.star, {
-					[styles.filled]: i < aciveRating,
-					[styles.pointer]: isEditable,
-					[styles.outline]: !isEditable
+				className={cn(styles.star, styles.pointer, {
+					[styles.filled]: i < aciveRating
 				})}
-				onMouseEnter={() => isEditable && setAciveRating(i + 1)}
-				onMouseLeave={() => isEditable && setAciveRating(ratingValue)}
+				onMouseEnter={() => setAciveRating(i + 1)}
+				onMouseLeave={() => setAciveRating(ratingValue)}
 				onClick={() => {
-					isEditable && setRatingValue(i + 1);
+					setRatingValue(i + 1);
 					setRatingOfForm && setRatingOfForm(i + 1);
 				}}
 			>
 				<StarIcon
-					tabIndex={isEditable ? computeFocus(ratingValue, i) : -1}
+					tabIndex={computeFocus(ratingValue, i)}
 					ref={r => ratingArrayRef.current?.push(r)}
 					onKeyDown={setValueKey}
 					onFocus={() => setAciveRating(i + 1)}
@@ -70,7 +86,7 @@ export const Rating = forwardRef(({ rating = 0, isEditable, setRatingOfForm, err
 		})}
 		>
 			{elements}
-			{error && <span className={styles.errorMessage}>{error.message}</span>}
+			{error && <span className={styles['error-message']}>{error.message}</span>}
 		</div>
 	);
 });

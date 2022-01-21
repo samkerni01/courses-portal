@@ -30,8 +30,10 @@
 	grid-area: footer;
 }
 
-.skipLink {
+.skip-link {
 	position: fixed;
+
+	z-index: 100;
 	top: 0;
 	left: 100px;
 
@@ -42,8 +44,6 @@
 
 	color: var(--white);
 	background: var(--primary);
-
-	z-index: 100;
 }
 
 .displayed {
