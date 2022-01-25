@@ -12,14 +12,15 @@ export interface IAppContext {
 export const AppContext = createContext<IAppContext>({ menu: [], firstCategory: TopLevelCategory.Courses });
 
 export const AppContextProvider = ({ menu, firstCategory, children }: PropsWithChildren<IAppContext>): JSX.Element => {
-	const [menuState, setMenuState] = useState<MenuItem[]>(menu);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const [newMenu, setNewMenu] = useState<MenuItem[]>(menu);
 
 	const setMenu = (newMenu: MenuItem[]) => {
-		setMenuState(newMenu);
+		setNewMenu(newMenu);
 	};
 
 	return (
-		<AppContext.Provider value={{ menu: menuState, firstCategory, setMenu }}>
+		<AppContext.Provider value={{ menu, firstCategory, setMenu }}>
 			{children}
 		</AppContext.Provider>
 	);

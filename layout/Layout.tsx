@@ -14,21 +14,21 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 
 	return (
 		<div className={styles.wrapper}>
-			<a
-				tabIndex={1}
+			<div
+				tabIndex={0}
 				className={cn(styles['skip-link'], {
 					[styles.displayed]: skipLinkDisplayed
 				})}
 				onFocus={() => setSkipLinkDisplayed(true)}
 				onBlur={() => setSkipLinkDisplayed(false)}
-				onKeyPress={(e: KeyboardEvent<HTMLAnchorElement>) => {
+				onKeyPress={(e: KeyboardEvent<HTMLDivElement>) => {
 					if (e.key == 'Enter') {
 						bodyRef.current?.focus();
 					}
 				}}
 			>
 				Сразу к содержимому
-			</a>
+			</div>
 			<Header className={styles.header} />
 			<Sidebar className={styles.sidebar} />
 			<div className={styles.body} ref={bodyRef} tabIndex={0}>

@@ -9,6 +9,12 @@ body {
 	font-family: var(--font-family);
 }
 
+ul {
+	padding-left: 0;
+
+	list-style-type: none;
+}
+
 a {
 	text-decoration: none;
 

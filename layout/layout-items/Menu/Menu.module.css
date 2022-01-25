@@ -56,6 +56,8 @@
 
 .second-level-block {
 	overflow: hidden;
+
+	text-transform: none;
 }
 
 .thrid-level-active,

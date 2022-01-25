@@ -56,14 +56,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<ContentProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
 	if (!params) return { notFound: true };
 
-	try {
-		const firstCategoryItem = firstLevelMenu.find(category => category.route == params.type);
-		if (!firstCategoryItem) return { notFound: true };
+	const firstCategoryItem = firstLevelMenu.find(category => category.route == params.type);
+	if (!firstCategoryItem) return { notFound: true };
 
+	try {
 		const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, { firstCategory: firstCategoryItem.id });
 		if (menu.length == 0) return { notFound: true };
 
 		const { data: page } = await axios.get<ContentModel>(API.topPage.byAlias + params.alias);
+
 		const { data: products } = await axios.post<ProductModel[]>(API.product.find, {
 			category: page.category,
 			limit: 10

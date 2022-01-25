@@ -39,7 +39,7 @@ export const Up = (): JSX.Element => {
 			animate={controls}
 			initial={{ opacity: 0 }}
 		>
-			<ButtonMini appearance='primary' icon='up' onClick={scrollToTop} />
+			<ButtonMini appearance='primary' icon='up' aria-label='Наверх' onClick={scrollToTop} />
 		</ motion.div>
 	);
 };
