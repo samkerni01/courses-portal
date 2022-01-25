@@ -1,5 +1,5 @@
 {
-  "name": "top-app",
+  "name": "courses-portal",
   "private": true,
   "scripts": {
     "dev": "next dev",
