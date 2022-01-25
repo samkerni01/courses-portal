@@ -24,6 +24,7 @@ export const Menu = (): JSX.Element => {
 			}
 		},
 		hidden: {
+			paddingTop: 0,
 			marginBottom: 0
 		}
 	};
